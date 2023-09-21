@@ -1,0 +1,32 @@
+.table-container {
+  overflow-x: auto;
+}
+
+.table-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  position: relative;
+}
+
+.table-scroll {
+  position: relative;
+  z-index: 1; /* Adjust this value based on your layout */
+}
+
+.table-scroll td,
+.table-scroll th {
+  white-space: nowrap;
+}
+
+.fixed-button {
+  position: fixed;
+  width: 90px;
+  top: 70px; 
+  right: 20px; 
+  z-index: 9999; 
+}
+.pagination {
+  padding: 30px; 
+  text-align: center;
+  justify-content: center;
+} 

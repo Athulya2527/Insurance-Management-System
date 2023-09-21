@@ -1,0 +1,188 @@
+<div>
+  <div class="row bg-white">
+    <div *ngIf="customers.length > 0" class="table-container">
+      <h3 class="container mt-4">Search Results</h3>
+      <div>
+        <button type="button" class="btn btn-secondary ms-1 fixed-button" (click)="onExit()">Exit</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table container table-hover table-bordered table-scroll">
+          <thead>
+            <tr class="bg-black text-center">
+              <th scope="col">Sl.No</th>
+              <th scope="col">Customer ID</th>
+              <th scope="col">Prefix</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Middle Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Contact Number</th>
+              <th scope="col">Alternate Number</th>
+              <th scope="col">DOB</th>
+              <th scope="col">Marital Status</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Address</th>
+              <!-- <th scope="col">Nominee Name</th>
+                            <th scope="col">Nominee Date of Birth</th>
+                            <th scope="col">Relationship</th>
+                            <th scope="col">Function</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="text-center"
+              *ngFor="let customer of customers | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: customers.length } ; let i = index">
+              <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
+              <td>{{ customer.customerId }}</td>
+              <td>{{ customer.prefix }}</td>
+              <td>{{ customer.firstName }}</td>
+              <td>{{ customer.middleName }}</td>
+              <td>{{ customer.lastName }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.contactNumber }}</td>
+              <td>{{ customer.alternateNumber }}</td>
+              <td>{{ customer.dateOfBirth }}</td>
+              <td>{{ customer.maritalStatus }}</td>
+              <td>{{ customer.gender }}</td>
+              <td>{{ customer.address }}</td>
+              <td class="text-center action-buttons">
+                <button class="btn btn-outline-danger m-2" (click)="onDelete(customer.customerId)">Delete</button>
+                <button class="btn btn-outline-primary" (click)="onEdit(customer.customerId)">Edit</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- <div class="modal fade " id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+          <div class="modal-body">
+              <p>Are you sure you want to delete?</p>
+              </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Cancel</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                    (click)="onConfirm()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+  <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update Customer Details</h5>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="editCustomerForm" (ngSubmit)="onUpdate()" id="editForm">
+            <div class="mb-3">
+              <label for="editPrefix" class="form-label">Prefix</label>
+              <select id="editPrefix" class="form-select" aria-label="Prefix" formControlName="prefix" name="prefix">
+                <option value="mr">Mr.</option>
+                <option value="mrs">Mrs.</option>
+                <option value="ms">Ms.</option>
+                <option value="dr">Dr.</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="editFirstName" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="editFirstName" placeholder="Enter first name"
+                formControlName="firstName" name="firstName">
+              <div *ngIf="editCustomerForm.get('firstName')?.invalid && editCustomerForm.get('firstName')?.touched"
+                class="text-danger">
+                First Name is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editMiddleName" class="form-label">Middle Name</label>
+              <input type="text" class="form-control" id="editMiddleName" placeholder="Enter middle name"
+                formControlName="middleName" name="middleName">
+            </div>
+            <div class="mb-3">
+              <label for="editLastName" class="form-label">Last Name</label>
+              <input type="text" class="form-control" id="editLastName" placeholder="Enter last name"
+                formControlName="lastName" name="lastName">
+              <div *ngIf="editCustomerForm.get('lastName')?.invalid && editCustomerForm.get('lastName')?.touched"
+                class="text-danger">
+                Last Name is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="editEmail" placeholder="Enter email address"
+                formControlName="email" name="email" readonly>
+            </div>
+            <div class="mb-3">
+              <label for="editContactNumber" class="form-label">Contact Number</label>
+              <input type="tel" class="form-control" id="editContactNumber" placeholder="Enter contact number"
+                formControlName="contactNumber" name="contactNumber">
+              <div
+                *ngIf="editCustomerForm.get('contactNumber')?.invalid && editCustomerForm.get('contactNumber')?.touched"
+                class="text-danger">
+                Contact Number is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editAlternateNumber" class="form-label">Alternate Number</label>
+              <input type="tel" class="form-control" id="editAlternateNumber" placeholder="Enter alternate number"
+                formControlName="alternateNumber" name="alternateNumber">
+            </div>
+            <div class="mb-3">
+              <label for="editDob" class="form-label">Date of Birth</label>
+              <input type="date" class="form-control" id="editDob" formControlName="dateOfBirth" name="dateOfBirth">
+              <div *ngIf="editCustomerForm.get('dateOfBirth')?.invalid && editCustomerForm.get('dateOfBirth')?.touched"
+                class="text-danger">
+                Date of Birth is required.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="editMaritalStatus" class="form-label">Marital Status</label>
+              <input type="text" class="form-control" id="editMaritalStatus" formControlName="maritalStatus">
+              <!-- <select id="editMaritalStatus" class="form-select" aria-label="Marital Status" formControlName="maritalStatus" name="maritalStatus">
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="divorced">Divorced</option>
+                <option value="widowed">Widowed</option>
+              </select> -->
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Gender</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="editMale" value="male" formControlName="gender"
+                  name="gender">
+                <label class="form-check-label" for="editMale">Male</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="editFemale" value="female" formControlName="gender"
+                  name="gender">
+                <label class="form-check-label" for="editFemale">Female</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="editOther" value="other" formControlName="gender"
+                  name="gender">
+                <label class="form-check-label" for="editOther">Other</label>
+              </div>
+            </div>
+            <!-- Add other fields for editing here -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeEdit()">Close</button>
+          <button type="submit" class="btn btn-primary" form="editForm">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+  </div>
+
+</div>

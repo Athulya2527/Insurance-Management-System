@@ -1,0 +1,79 @@
+<div class="page-container">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a href="#" class="list-group-item list-group-item-action py-2 ripple" (click)="toggleBox($event)">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i>
+          <span>Contact Information</span>
+        </a>
+        <a href="/company/agentdetails" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i>
+          <span>Agent Details</span>
+        </a>
+        <a href="/company/customerdetails" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-lock fa-fw me-3"></i>
+          <span>Customer Details</span>
+        </a>
+        <a href="/company/policydetails" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-line fa-fw me-3"></i>
+          <span>Policy Details</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <div class="content-container">
+    <div *ngFor="let company of company">
+      <div class="image">
+        <img
+          src="https://media.istockphoto.com/id/1290693328/photo/family-care-concept-hands-with-paper-silhouette-on-table.jpg?s=612x612&w=0&k=20&c=ndKmKJeFdkTjQ2ivwGp4-_y3W69MsmBeqMhGAdYC9O4="
+          alt="Image Description">
+        <div class="text-overlay">
+          <marquee>
+            Hi, welcome to {{company.name}}
+          </marquee>
+        </div>
+      </div>
+      <div class="overlay-box" *ngIf="showBox">
+        <span class="close-icon" (click)="closeBox()">&times;</span>
+        <h5>{{company.name}}</h5><br>
+        <br>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">ID:</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{company.companyId}}</p>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Email:</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{company.email}}</p>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Phone:</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{company.contactNumber}}</p>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-3">
+            <p class="mb-0">Address:</p>
+          </div>
+          <div class="col-sm-9">
+            <p class="text-muted mb-0">{{company.address}}</p>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

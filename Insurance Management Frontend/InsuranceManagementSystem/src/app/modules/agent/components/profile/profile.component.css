@@ -1,0 +1,12 @@
+h5 {
+    text-align: center;
+    color: linear-gradient(to right, #961591, #d8363a, #dd3675, #660856);
+}
+
+.row {
+    padding-top: 8px;
+}
+
+.btn {
+    background-image: linear-gradient(to right, #961591, #d8363a, #dd3675, #660856);
+}

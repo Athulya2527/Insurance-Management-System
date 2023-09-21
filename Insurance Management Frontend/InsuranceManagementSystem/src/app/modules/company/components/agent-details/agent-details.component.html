@@ -1,0 +1,68 @@
+<div class="css-selector ">
+    <div class="upper-box d-flex justify-content-between mt-2 ">
+        <div class="inputbar p-2 " >
+            <form class="d-flex  " role="search">
+                <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="exit p-2">
+            <button type="button" class="btn btn-outline-dark" data-mdb-ripple-color="dark" (click)="onExit()">Exit</button>
+        </div>
+    </div>
+    <div class="container px-4 text-center">
+        <div class="row gx-3">
+             <div class="col" *ngFor="let agent of agents | paginate: { itemsPerPage: itemsPerPage, currentPage: page, totalItems: agents.length } ; let i = index"> 
+                
+                <div class="agent-box">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Name:</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{ agent.fullName }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">ID:</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{ agent.agentId }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Email:</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{ agent.email }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Phone:</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{ agent.contactNumber }}</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <p class="mb-0">Address:</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <p class="text-muted mb-0">{{ agent.address }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <pagination-controls class="pagination" (pageChange)="page = $event"></pagination-controls>
+    </div>
+</div>

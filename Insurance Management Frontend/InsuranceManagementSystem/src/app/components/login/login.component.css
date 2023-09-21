@@ -1,0 +1,125 @@
+.css-selector {
+    background: linear-gradient(319deg, #d159da, #fb4990, #6244a4);
+    background-size: 600% 600%;
+    height: 100vh;
+    padding-top: 80px;
+
+    -webkit-animation: AnimationName 8s ease infinite;
+    -moz-animation: AnimationName 8s ease infinite;
+    animation: AnimationName 8s ease infinite;
+}
+
+img {
+    padding-left: 20%;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0% 29%
+    }
+
+    50% {
+        background-position: 100% 72%
+    }
+
+    100% {
+        background-position: 0% 29%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0% 29%
+    }
+
+    50% {
+        background-position: 100% 72%
+    }
+
+    100% {
+        background-position: 0% 29%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0% 29%
+    }
+
+    50% {
+        background-position: 100% 72%
+    }
+
+    100% {
+        background-position: 0% 29%
+    }
+}
+
+.login-container {
+    padding-top: 200px;
+    height: 600px;
+    background-color: #fff;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 5px;
+
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-image-source: linear-gradient(to right, #961591, #d8363a, #dd3675, #660856);
+    border-width: 2pt;
+    border-image-slice: 1;
+
+}
+
+textarea:focus,
+select:focus,
+input:focus {
+    outline: none;
+}
+
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-image: linear-gradient(to right, #961591, #d8363a, #dd3675, #660856);
+    color: #fff;
+    border: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    flex: 1 1 auto;
+    background-size: 200% auto;
+    transition: 0.5s;
+}
+
+button:hover {
+    background-position: right center;
+}

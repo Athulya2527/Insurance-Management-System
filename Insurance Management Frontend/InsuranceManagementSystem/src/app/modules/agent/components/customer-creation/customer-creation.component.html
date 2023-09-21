@@ -1,0 +1,324 @@
+<div class="container">
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <h3>Personal Information</h3>
+
+      <div class="mb-3">
+        <label for="prefix" class="form-label">Prefix</label>
+        <select id="prefix" class="form-select" aria-label="Prefix" formControlName="prefix" required>
+          <option value="mr">Mr.</option>
+          <option value="mrs">Mrs.</option>
+          <option value="ms">Ms.</option>
+          <option value="dr">Dr.</option>
+        </select>
+        <div class="text-danger"
+          *ngIf="customerForm.controls['prefix'].invalid && customerForm.controls['prefix'].touched">
+          Prefix is required.
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" placeholder="Enter first name"
+            formControlName="firstName" name="firstName" required>
+          <div class="valid" class="text-danger" *ngIf="
+              customerForm.controls['firstName'].invalid && 
+              customerForm.controls['firstName'].touched  
+            ">
+            First Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="middleName" class="form-label">Middle Name</label>
+          <input type="text" class="form-control" id="middleName" placeholder="Enter middle name"
+            formControlName="middleName" name="middleName">
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="lastName" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="lastName" placeholder="Enter last name" formControlName="lastName"
+            name="lastName" required>
+          <div class="valid" class="text-danger" *ngIf="
+              customerForm.controls['lastName'].invalid && 
+              customerForm.controls['lastName'].touched  
+            ">
+            Last Name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email address" formControlName="email"
+        name="email">
+      <div class="text-danger" *ngIf="
+            customerForm.controls['email'].invalid && 
+            customerForm.controls['email'].touched &&
+            customerForm.controls['email'].errors
+         ">
+        <div *ngIf="customerForm.controls['email'].errors['required']">
+          Email is required
+        </div>
+        <div *ngIf="customerForm.controls['email'].errors['email']">
+          Invalid Email
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="text" class="form-control" id="password" placeholder="Enter password" formControlName="password"
+          name="password">
+        <div class="valid" class="text-danger" *ngIf="
+              customerForm.controls['password'].invalid && 
+              customerForm.controls['password'].touched && 
+              customerForm.controls['password'].errors
+          ">
+          <div *ngIf="customerForm.controls['password'].errors['required']">
+            Password is required
+          </div>
+          <div *ngIf="customerForm.controls['password'].errors['minlength']">
+            Password should contain a minimum of 6 such characters
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="dob" class="form-label">Date of Birth</label>
+      <input type="date" class="form-control" id="dob" formControlName="dateOfBirth" name="dob">
+      <div class="text-danger" *ngIf="
+            customerForm.controls['dateOfBirth'].invalid && 
+            customerForm.controls['dateOfBirth'].touched &&
+            customerForm.controls['dateOfBirth'].errors
+          ">
+        <div *ngIf="customerForm.controls['dateOfBirth'].errors['required']">
+          Date of Birth is required.
+        </div>
+        <div *ngIf="customerForm.controls['dateOfBirth'].errors['futureDate']">
+          Future dates are not allowed.
+        </div>
+        <div *ngIf="customerForm.controls['dateOfBirth'].errors['underage']">
+          Users must be 18 years or above.
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="maritalStatus" class="form-label">Marital Status</label>
+      <select id="maritalStatus" class="form-select" aria-label="Marital Status" formControlName="maritalStatus"
+        name="maritalStatus">
+        <option value="single">Single</option>
+        <option value="married">Married</option>
+        <option value="divorced">Divorced</option>
+        <option value="widowed">Widowed</option>
+      </select>
+      <div *ngIf="customerForm.get('maritalStatus')?.invalid && customerForm.get('maritalStatus')?.touched"
+        class="text-danger">
+        Marital Status is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="gender" class="form-label">Gender</label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="male" value="male" formControlName="gender">
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="female" value="female" formControlName="gender">
+        <label class="form-check-label" for="female">Female</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="other" value="other" formControlName="gender">
+        <label class="form-check-label" for="other">Other</label>
+      </div>
+      <div *ngIf="customerForm.get('gender')?.invalid && customerForm.get('gender')?.touched" class="text-danger">
+        Gender is required.
+      </div>
+    </div>
+    <!-- Contact Information -->
+    <hr>
+    <div>
+      <h3>Contact Information</h3>
+
+      <div class="mb-3">
+        <label for="contactNumber" class="form-label">Contact Number</label>
+        <input type="number" pattern="[0-9]{10}" class="form-control" id="contactNumber"
+          placeholder="Enter primary contact number" formControlName="contactNumber" name="contactNumber" required>
+        <div class="text-danger" *ngIf="
+            customerForm.controls['contactNumber'].invalid && 
+            customerForm.controls['contactNumber'].touched &&
+            customerForm.controls['contactNumber'].errors
+          ">
+          <div *ngIf="customerForm.controls['contactNumber'].errors['required']">
+            Contact number is required
+          </div>
+          <div *ngIf="customerForm.controls['contactNumber'].errors['pattern']">
+            Contact Number is Invalid
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="alternateNumber" class="form-label">Alternate Number</label>
+        <input type="number" class="form-control" id="alternateNumber" placeholder="Enter alternate phone number"
+          formControlName="alternateNumber" name="alternateNumber" required>
+        <div class="text-danger" *ngIf="
+            customerForm.controls['alternateNumber'].invalid && 
+            customerForm.controls['alternateNumber'].touched &&
+            customerForm.controls['alternateNumber'].errors
+          ">
+          <div *ngIf="customerForm.controls['alternateNumber'].errors['required']">
+            Alternate number is required
+          </div>
+          <div *ngIf="customerForm.controls['alternateNumber'].errors['pattern']">
+            Alternate Number is Invalid
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" rows="3" placeholder="Enter address" formControlName="address"
+          name="address"></textarea>
+      </div>
+    </div>
+    <div class="btn-group my-2">
+      <div class="">
+        <button type="submit" class="btn btn-primary d-inline-block" [disabled]="customerForm.invalid">Save</button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-secondary ms-1 fixed-button" (click)="onCancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
+  <!-- Policy Information  -->
+  <div>
+
+    <h3>Policy Details</h3>
+    <div class="mb-3">
+      <label for="proposedPolicyNumber" class="form-label">Proposed Policy Number</label>
+      <select id="proposedPolicyNumber" class="form-select" aria-label="Proposed Policy"
+        (change)="onPolicyNumberChange($event)">
+        <option value="select">Policy Number</option>
+        <option *ngFor="let policyNumber of policy" [value]="policyNumber">{{ policyNumber }}</option>
+      </select>
+    </div>
+    <div *ngIf="selectedPolicyDetails" class="mb-3">
+      <div class="mb-3">
+        <label for="policyId" class="form-label">Policy ID</label>
+        <input type="text" class="form-control" id="policyId" name="policyId" [value]="selectedPolicyDetails.policyId"
+          readonly>
+
+      </div>
+      <div class="mb-3">
+        <label for="policyType" class="form-label">Policy Type</label>
+        <input type="text" class="form-control" id="policyType" placeholder="Policy Type" name="policyType"
+          [value]="selectedPolicyDetails.policyType" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="premiumAmount" class="form-label">Premium Amount</label>
+        <input type="text" class="form-control" id="premiumAmount" placeholder="Premium Amount" name="premiumAmount"
+          [value]="selectedPolicyDetails.premiumAmount" readonly>
+      </div>
+
+      <div class="mb-3">
+        <label for="coveragePeriod" class="form-label">Coverage Period</label>
+        <input type="text" class="form-control" id="coveragePeriod" name="coveragePeriod"
+          [value]="selectedPolicyDetails.coveragePeriod" readonly>
+      </div>
+      <div class="mb-3">
+        <label for="coverageAmount" class="form-label">Coverage Amount</label>
+        <input type="text" class="form-control" id="coverageAmount" name="coverageAmount"
+          [value]="selectedPolicyDetails.coverageAmount" readonly>
+
+      </div>
+    </div>
+    <form [formGroup]="policyForm" (ngSubmit)="onSubmitPolicy()">
+      <div class="col">
+        <div class="mb-3">
+          <label for="nomineeName" class="form-label">Nominee Name</label>
+          <input type="text" class="form-control" id="nomineeName" placeholder="Enter nominee name"
+            formControlName="nomineeName" name="nomineeName" required>
+            <div class="valid" class="text-danger" *ngIf="
+              policyForm.controls['nomineeName'].invalid && 
+              policyForm.controls['nomineeName'].touched  
+            ">
+            Nominee Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="mb-3">
+          <label for="nomineePhoneNumber" class="form-label">Nominee Phone Number</label>
+          <input type="text" class="form-control" id="nomineePhoneNumber" placeholder="Enter nominee phone number"
+            formControlName="nomineePhoneNumber" required>
+          <div class="text-danger" *ngIf="
+            policyForm.controls['nomineePhoneNumber'].invalid && 
+            policyForm.controls['nomineePhoneNumber'].touched &&
+            policyForm.controls['nomineePhoneNumber'].errors
+          ">
+          <div *ngIf="policyForm.controls['nomineePhoneNumber'].errors['required']">
+            Phone number is required
+          </div>
+          <div *ngIf="policyForm.controls['nomineePhoneNumber'].errors['pattern']">
+            Phone Number is Invalid
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="mb-3">
+          <label for="nomineeDateOfBirth" class="form-label">Nominee Date of Birth</label>
+          <input type="date" class="form-control" id="nomineeDateOfBirth" formControlName="nomineeDateOfBirth"
+            name="nomineeDateOfBirth">
+            <div class="text-danger" *ngIf="
+            policyForm.controls['nomineeDateOfBirth'].invalid && 
+            policyForm.controls['nomineeDateOfBirth'].touched &&
+            policyForm.controls['nomineeDateOfBirth'].errors
+          ">
+        <div *ngIf="policyForm.controls['nomineeDateOfBirth'].errors['required']">
+          Date of Birth is required.
+        </div>
+        <div *ngIf="policyForm.controls['nomineeDateOfBirth'].errors['futureDate']">
+          Future dates are not allowed.
+        </div>
+        <div *ngIf="policyForm.controls['nomineeDateOfBirth'].errors['underage']">
+          Users must be 18 years or above.
+        </div>
+      </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="mb-3">
+          <label for="relationship" class="form-label">Relationship</label>
+          <input type="text" class="form-control" id="relationship" formControlName="relationship" name="relationship" required>
+          <div class="valid" class="text-danger" *ngIf="
+              policyForm.controls['relationship'].invalid && 
+              policyForm.controls['relationship'].touched  
+            ">
+            Relationship is required.
+          </div>
+        </div>
+      </div>
+      <div class="btn-group my-2">
+        <div class="">
+          <button type="submit" class="btn btn-primary d-inline-block" [disabled]="policyForm.invalid">Save</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-secondary ms-1 fixed-button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

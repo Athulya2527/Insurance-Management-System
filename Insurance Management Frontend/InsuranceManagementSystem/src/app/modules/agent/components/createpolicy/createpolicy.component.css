@@ -1,0 +1,8 @@
+.container {
+    /* width: 100vw;
+    height: 100vh; */
+    position: relative; 
+    min-height: 100vh; /* Ensure minimum height covers the entire viewport */
+    padding-bottom: 100px; /* Adjust to match the footer's height */
+  
+}

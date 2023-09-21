@@ -1,0 +1,73 @@
+<div class="css-selector ">
+
+    <div class="login-container  ">
+        <div class="row  justify-content-center align-items-center">
+            <div class="col-xl-10">
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <img src="https://www.bytestrone.com/static/b7b79b259b49356869eb0d122182cd7c/59092/bytestrone-logo-blue.webp"
+                        alt="logo">
+                    <h3 class="mt-2"> Byte's Insurance</h3>
+                    <h5>Our Insurance Team</h5>
+                    <h4 class="mt-4">Login</h4>
+                    <div class="form-group">
+                        <label for="role">Role:</label>
+                        <select id="role" name="role" class="border-gradient-purple" formControlName="role" required>
+                            <option value="">Select</option>
+                            <option value="customer">Customer</option>
+                            <option value="agent">Agent</option>
+                            <option value="company">Company</option>
+                        </select>
+                        <div class="valid" class="text-danger" *ngIf="
+                            loginForm.controls.role.invalid && 
+                            loginForm.controls.role.touched
+                        ">
+                            Role is Required
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="email" class="form-control" formControlName="email"
+                            required>
+                        <div class="valid" class="text-danger" *ngIf="
+                               loginForm.controls.email.invalid && 
+                               loginForm.controls.email.touched &&
+                               loginForm.controls.email.errors
+                            ">
+                            <div *ngIf="loginForm.controls.email.errors['required']">
+                                Email is required
+                            </div>
+                            <div *ngIf="loginForm.controls.email.errors['email']">
+                                Invalid Email
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input [type]="showPassword ? 'text' : 'password'" type="password" name="password" id="password"
+                            class="form-control" formControlName="password" required>
+                        <label>
+                            Show Password
+                            <input type="checkbox" (change)="passwordVisibility()">
+                        </label>
+                        <div class="text-danger" *ngIf="
+                            loginForm.controls.password.invalid && 
+                            loginForm.controls.password.touched && 
+                            loginForm.controls.password.errors
+                        ">
+                            <div *ngIf="loginForm.controls.password.errors['required']">
+                                Password is required
+                            </div>
+                            <div *ngIf="loginForm.controls.password.errors['minlength']">
+                                Password should contain a minimum of 6 such characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

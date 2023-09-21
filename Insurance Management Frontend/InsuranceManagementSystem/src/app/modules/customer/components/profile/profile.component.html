@@ -1,0 +1,180 @@
+<div class="container mt-5 mb-5" *ngFor="let customer of customers">
+    <h1 class="text-center mb-5">Heyy... {{customer.firstName}} {{customer.middleName}} {{customer.lastName}}</h1>
+    <div class="row">
+        <!-- Box on the left -->
+        <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div>
+                            <h6 class="text-center">Personal Information</h6>
+                        </div>
+                        <hr>
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.firstName}} {{customer.middleName}} {{customer.lastName}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">ID</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.customerId}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.email}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Primary Number</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.contactNumber}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Alternate Number</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.alternateNumber}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Date of Birth</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.dateOfBirth}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Gender</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.gender}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.maritalStatus}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.address}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Two boxes on the right -->
+        <!-- <div class="col-md-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div>
+                            <h6 class="text-center">Nominee Information</h6>
+                        </div>
+                        <hr>
+                        <div class="col-sm-4">
+                            <h6 class="mb-0"> Name</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.nomineeName}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0"> Date Of Birth</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.nomineeDateOfBirth}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Phone Number</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.nomineePhoneNumber}}
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Relationship</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            {{customer.relationship}}
+                        </div>
+                    </div>
+
+                </div> 
+            </div> -->
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div>
+                            <h6 class="text-center">Policy Information</h6>
+                        </div>
+                        <hr>
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Policy No</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            1234568
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Type</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            General
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h6 class="mb-0">Coverage</h6>
+                        </div>
+                        <div class="col-sm-8 text-secondary">
+                            third
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center"><button class="btn btn-success ">Claim</button></div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>

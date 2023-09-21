@@ -1,0 +1,57 @@
+<div class="container ">
+  <div class="p-2">
+    <form [formGroup]="policyForm" (ngSubmit)="onSubmit()">
+      <div>
+        <h3>Policy Information</h3>
+        <div class="mb-3">
+          <label for="policyType" class="form-label">Policy Type</label>
+          <input type="text" class="form-control" id="policyType" formControlName="policyType" required>
+          <div class="text-danger" *ngIf="
+            policyForm.controls['policyType'].invalid && 
+            policyForm.controls['policyType'].touched &&
+            policyForm.controls['policyType'].errors
+          ">
+            <div *ngIf="policyForm.controls['policyType'].errors['required']">
+              Policy Type is required
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="premiumAmount" class="form-label">Premium Amount</label>
+          <input type="number" class="form-control" id="premiumAmount" formControlName="premiumAmount">
+        </div>
+
+        <div class="mb-3">
+          <label for="coverageYear" class="form-label">Coverage Year</label>
+          <input type="text" class="form-control" id="coverageYear" formControlName="coverageYear">
+        </div>
+
+        <div class="mb-3">
+          <label for="coverageAmount" class="form-label">Coverage Amount</label>
+          <input type="number" class="form-control" id="coverageAmount" formControlName="coverageAmount">
+        </div>
+        <div>
+          <h3>Company Information</h3>
+          <div class="mb-3">
+            <label for="companyId" class="form-label">Company ID</label>
+            <select id="companyId" class="form-select" aria-label="Company ID" formControlName="companyId"
+              name="companyId">
+              <option *ngFor="let companyId of companyIds" [value]="companyId">{{ companyId }}</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="btn-group my-2">
+          <div class="">
+            <button type="submit" class="btn btn-primary d-inline-block">Submit</button>
+          </div>
+          <div class="mx-2">
+            <button type="button" class="btn btn-secondary d-inline-block" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
